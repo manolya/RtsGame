@@ -3,25 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RTS Game</title>
+    <title>Magical RTS Game</title>
     <style>
-        body { text-align: center; font-family: Arial, sans-serif; }
-        #resources { margin: 10px; }
+        /* 🌙 Background & Overall Styling */
+        body {
+            background: linear-gradient(to bottom, #9b5de5, #f15bb5);
+            text-align: center;
+            font-family: "Arial", sans-serif;
+            color: white;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* 🌟 Digital Cat Guide */
+        .digital-cat {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            animation: float 3s infinite alternate;
+            width: 100px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* 🔮 UI Windows */
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid gold;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 400px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* ✨ Buttons */
+        .button {
+            background: gold;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button:hover {
+            background: white;
+            color: gold;
+            box-shadow: 0px 0px 10px gold;
+        }
+
+        /* 💎 Resources & Troops Styling */
+        .resource, .troop {
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid white;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* 🌙 Font & Custom Cursive Look */
+        h1, h2 {
+            font-family: 'Lucida Handwriting', cursive;
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to My RTS Game</h1>
-    <div id="resources">
-        <p>Gold: <span id="gold">100</span></p>
-        <p>Food: <span id="food">100</span></p>
+
+    <!-- 🌙 Game Title -->
+    <h1>✨ Magical RTS Game ✨</h1>
+
+    <!-- 🌟 Resources Panel -->
+    <div class="container">
+        <h2>🌙 Resources</h2>
+        <div class="resource">💰 Gold: <span id="gold">100</span> <button class="button" onclick="collectResource('gold')">Collect</button></div>
+        <div class="resource">🍖 Food: <span id="food">100</span> <button class="button" onclick="collectResource('food')">Collect</button></div>
+        <div class="resource">🌳 Wood: <span id="wood">100</span> <button class="button" onclick="collectResource('wood')">Collect</button></div>
+        <div class="resource">🪨 Stone: <span id="stone">100</span> <button class="button" onclick="collectResource('stone')">Collect</button></div>
     </div>
-    <button onclick="collectGold()">Collect Gold</button>
+
+    <!-- ⚔️ Troop Training Panel -->
+    <div class="container">
+        <h2>⚔️ Train Troops</h2>
+        <div class="troop">🛡️ Infantry: <span id="infantry">0</span> <button class="button" onclick="trainTroop('infantry')">Train</button></div>
+        <div class="troop">🏹 Archers: <span id="archers">0</span> <button class="button" onclick="trainTroop('archers')">Train</button></div>
+        <div class="troop">🐎 Cavalry: <span id="cavalry">0</span> <button class="button" onclick="trainTroop('cavalry')">Train</button></div>
+        <div class="troop">🏰 Siege Weapons: <span id="siege">0</span> <button class="button" onclick="trainTroop('siege')">Train</button></div>
+    </div>
+
+    <!-- 👑 General Selection -->
+    <div class="container">
+        <h2>👑 Assign General</h2>
+        <select id="generalSelect">
+            <option value="Seraphina">✨ Seraphina</option>
+            <option value="Luna Nightshade">🌙 Luna Nightshade</option>
+            <option value="Celestia">🌟 Celestia</option>
+            <option value="Eclipse Shadow">🌑 Eclipse Shadow</option>
+        </select>
+        <button class="button" onclick="assignGeneral()">Assign</button>
+        <p>🌟 Current General: <span id="currentGeneral">None</span></p>
+    </div>
+
+    <!-- 🐱 Floating Digital Cat -->
+    <img src="https://i.imgur.com/B9mvOeM.png" alt="Digital Cat" class="digital-cat">
+
     <script>
-        let gold = 100;
-        function collectGold() {
-            gold += 10;
-            document.getElementById("gold").innerText = gold;
+        // 🎮 Game Variables
+        let resources = { gold: 100, food: 100, wood: 100, stone: 100 };
+        let troops = { infantry: 0, archers: 0, cavalry: 0, siege: 0 };
+        let general = "None";
+
+        // ✨ Function to Collect Resources
+        function collectResource(type) {
+            resources[type] += 10;
+            document.getElementById(type).innerText = resources[type];
+        }
+
+        // ⚔️ Function to Train Troops
+        function trainTroop(type) {
+            if (resources.food >= 20 && resources.gold >= 10) {
+                troops[type] += 1;
+                resources.food -= 20;
+                resources.gold -= 10;
+                document.getElementById(type).innerText = troops[type];
+                document.getElementById("gold").innerText = resources.gold;
+                document.getElementById("food").innerText = resources.food;
+            } else {
+                alert("Not enough resources! 🌙");
+            }
+        }
+
+        // 🌙 Assign General
+        function assignGeneral() {
+            general = document.getElementById("generalSelect").value;
+            document.getElementById("currentGeneral").innerText = general;
         }
     </script>
+
 </body>
 </html>
