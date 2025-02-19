@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTS Game</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        #resources { margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My RTS Game</h1>
+    <div id="resources">
+        <p>Gold: <span id="gold">100</span></p>
+        <p>Food: <span id="food">100</span></p>
+    </div>
+    <button onclick="collectGold()">Collect Gold</button>
+    <script>
+        let gold = 100;
+        function collectGold() {
+            gold += 10;
+            document.getElementById("gold").innerText = gold;
+        }
+    </script>
+</body>
+</html>
