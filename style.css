@@ -1,0 +1,73 @@
+/* 🌙 Background & Overall Styling */
+body {
+    background: linear-gradient(to bottom, #9b5de5, #f15bb5);
+    text-align: center;
+    font-family: "Arial", sans-serif;
+    color: white;
+    padding: 20px;
+    overflow-y: auto; /* FIX: Enables scrolling */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 🌟 Digital Cat Guide */
+.digital-cat {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    animation: float 3s infinite alternate;
+    width: 100px;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+/* 🔮 UI Windows */
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid gold;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px auto;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+}
+
+/* ✨ Buttons */
+.button {
+    background: gold;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+    background: white;
+    color: gold;
+    box-shadow: 0px 0px 10px gold;
+}
+
+/* 💎 Resources & Troops Styling */
+.resource, .troop {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+}
+
+/* 🌙 Font & Custom Cursive Look */
+h1, h2 {
+    font-family: 'Lucida Handwriting', cursive;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
+}
