@@ -61,7 +61,7 @@ async function assignGeneral() {
         eclipseshadow: "assets/eclipseshadow.png",
         celestia: "assets/celestia.png",
         seraphina: "assets/seraphina.png",
-        lunanightshade: "assets/lunabightshade.png"
+        lunanightshade: "assets/lunanightshade.png"
     };
 
     const generalImage = document.getElementById("generalImage");
